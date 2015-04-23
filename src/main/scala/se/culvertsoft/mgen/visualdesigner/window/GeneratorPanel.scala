@@ -12,6 +12,7 @@ import se.culvertsoft.mgen.visualdesigner.util.MkDocumentListener
 import javax.swing.JFileChooser
 import javax.swing.BorderFactory
 import java.awt.Color
+
 abstract class GeneratorPanel(generator: Generator) extends JPanel() {
   setLayout(new MigLayout("inset 10 10 10 10"))
   setBorder(BorderFactory.createLineBorder(Color.black));
@@ -20,7 +21,7 @@ abstract class GeneratorPanel(generator: Generator) extends JPanel() {
   val classRegistryPath = createTextFieldWithLabel("Class Registry Path", generator.getClassRegistryPath, generator.setClassRegistryPath)
   val generatorPath = createTextFieldWithLabel("Generator Path", generator.getGeneratorJarFileFolder, generator.setGeneratorJarFileFolder, true)
   val outputFolder = createTextFieldWithLabel("Output Folder", generator.getOutputFolder, generator.setOutputFolder, true)
-  val settings = new SettingsPanel(generator.getSettings())
+  val settings = new SettingsPanel(generator.getSettings)
 
   val delButton = new JButton("Remove Generator")
   delButton.addActionListener(MkActionListener {
@@ -37,7 +38,7 @@ abstract class GeneratorPanel(generator: Generator) extends JPanel() {
   
   revalidate()
   
-  def createTextFieldWithLabel(title: String, get: () => String, set: String => Unit, fileBrowser: Boolean = false): JPanel = {
+  def createTextFieldWithLabel[SetRet](title: String, get: () => String, set: String => SetRet, fileBrowser: Boolean = false): JPanel = {
     val pane = new JPanel()
     pane.setLayout(new MigLayout("inset 0 0 0 0"))
     val label = new JLabel(title)

@@ -1,6 +1,5 @@
 package se.culvertsoft.mgen.visualdesigner.window
 
-import java.util.HashMap
 import scala.collection.JavaConversions.mapAsScalaMap
 import scala.collection.mutable.ArrayBuffer
 import javax.swing.JPanel
@@ -9,7 +8,7 @@ import javax.swing.JButton
 import se.culvertsoft.mgen.visualdesigner.util.MkActionListener
 import javax.swing.JLabel
 
-class SettingsPanel(map: HashMap[String, String]) extends JPanel {
+class SettingsPanel(map: java.util.Map[String, String]) extends JPanel {
   setLayout(new MigLayout("wrap 1"))
   add(new JLabel("Settings"))
   val addButton = new JButton("Add Setting")
